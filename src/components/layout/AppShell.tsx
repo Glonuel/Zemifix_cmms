@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { createContext, useContext, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -26,6 +26,7 @@ const pageTitles: Record<string, string> = {
   '/work-orders': 'Work orders',
   '/work-orders/new': 'Create work order',
   '/work-orders/calendar': 'Work order schedule',
+  '/work-orders/dispatch': 'Dispatch Board',
   '/requests': 'Service requests',
   '/assets': 'Assets',
   '/dashboard/assets': 'Asset register',
@@ -122,7 +123,7 @@ function BranchSelector() {
             Available branches
           </p>
           {loading ? (
-            <p className="px-3 py-4 text-xs text-slate-500">Loading…</p>
+            <p className="px-3 py-4 text-xs text-slate-500">Loadingâ€¦</p>
           ) : error ? (
             <p className="px-3 py-4 text-xs text-rose-700">{error}</p>
           ) : branches.length ? (
@@ -139,7 +140,7 @@ function BranchSelector() {
                 >
                   <span className="min-w-0">
                     <span className="block truncate font-medium">{b.name}</span>
-                    <span className="mt-0.5 block text-[10px] text-slate-500">{b.code} · {b.type}</span>
+                    <span className="mt-0.5 block text-[10px] text-slate-500">{b.code} Â· {b.type}</span>
                   </span>
                   {selectedBranch === b.name && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#FF5B00]" />}
                 </button>
@@ -225,3 +226,4 @@ export function AppShell({ children }: AppShellProps) {
     </AppShellContext.Provider>
   );
 }
+

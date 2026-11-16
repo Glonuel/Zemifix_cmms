@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -83,6 +83,7 @@ const facilityGroups: NavGroup[] = [
     key: 'operations',
     items: [
       { name: 'Work Orders', href: '/work-orders', icon: ClipboardList },
+      { name: 'Dispatch Board', href: '/work-orders/dispatch', icon: CalendarDays },
       { name: 'Assets', href: '/dashboard/assets', icon: Wrench },
       { name: 'Preventive Maintenance', href: '/preventive', icon: CalendarCheck2 },
     ],
@@ -143,6 +144,7 @@ const contractorGroups: NavGroup[] = [
     key: 'operations',
     items: [
       { name: 'Work Orders', href: '/work-orders', icon: ClipboardList },
+      { name: 'Dispatch Board', href: '/work-orders/dispatch', icon: CalendarDays },
       { name: 'Assets', href: '/dashboard/assets', icon: Wrench },
       { name: 'Preventive Maintenance', href: '/preventive', icon: CalendarCheck2 },
     ],
@@ -190,7 +192,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
 }) => {
   const groups = mode === 'contractor' ? contractorGroups : facilityGroups;
 
-  // Collapsible group state — all expanded by default
+  // Collapsible group state â€” all expanded by default
   const initialOpen = Object.fromEntries(groups.map((g) => [g.key, true]));
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(initialOpen);
 
@@ -384,3 +386,4 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
     </>
   );
 };
+
