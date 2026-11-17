@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Shell } from '@/src/components/layout/Shell';
+import AuditLogPanel from '@/src/components/users/AuditLogPanel';
 import { Users, Plus, RefreshCw, CheckCircle2, AlertCircle, Shield, Edit2, X, Search, Key, History, Monitor } from 'lucide-react';
 
 const demoRoles = [
@@ -13,15 +14,6 @@ const demoRoles = [
   { id: 'r-6', name: 'Procurement Officer', userCount: 1, description: 'Manage supplier relations and purchasing', permissions: [{ module: 'Procurement', level: 'Full' }] },
   { id: 'r-7', name: 'Finance Officer', userCount: 1, description: 'Invoicing, payments and financial reporting', permissions: [{ module: 'Finance', level: 'Full' }] },
   { id: 'r-8', name: 'Requester', userCount: 12, description: 'Submit maintenance requests only', permissions: [{ module: 'Requests', level: 'Create' }] },
-];
-
-const demoAuditLog = [
-  { id: 'al-1', at: 'Nov 8, 11:22', userName: 'Nana Yaw Addo', action: 'Updated staff account', entityType: 'User', entityId: 'Samuel Osei', ip: '197.251.8.44', status: 'Success' },
-  { id: 'al-2', at: 'Nov 8, 09:14', userName: 'Kofi Owusu', action: 'Approved work order', entityType: 'Work Order', entityId: 'WO-00284', ip: '197.251.8.12', status: 'Success' },
-  { id: 'al-3', at: 'Nov 7, 16:50', userName: 'System', action: 'Failed login attempt', entityType: 'Auth', entityId: 'unknown@zemifix.local', ip: '41.66.200.11', status: 'Failed' },
-  { id: 'al-4', at: 'Nov 7, 14:30', userName: 'Nana Yaw Addo', action: 'Created branch', entityType: 'Branch', entityId: 'OUT-KMS-02', ip: '197.251.8.44', status: 'Success' },
-  { id: 'al-5', at: 'Nov 7, 09:00', userName: 'Kwesi Mensah', action: 'Logged labor on WO', entityType: 'Work Order', entityId: 'WO-00284', ip: '10.0.1.22', status: 'Success' },
-  { id: 'al-6', at: 'Nov 6, 16:11', userName: 'System', action: 'Access denied — scope violation', entityType: 'Auth', entityId: 'Grace Owusu', ip: '10.0.1.40', status: 'Denied' },
 ];
 
 const demoSessions = [
@@ -270,36 +262,8 @@ export default function UsersPage() {
               </div>
             </div>
           )}
-
           {/* Audit Log */}
-          {userTab === 'audit' && (
-            <div>
-              <div className="border-b border-slate-100 bg-amber-50/40 px-4 py-2 text-[11px] text-amber-700 font-medium">
-                Demonstration audit log. Live audit events are written on every state-changing operation.
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left">
-                  <thead><tr className="border-b border-slate-100 bg-slate-50/80">{['Timestamp', 'User', 'Action', 'Entity', 'IP Address', 'Result'].map((h) => <th key={h} className="px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-slate-400">{h}</th>)}</tr></thead>
-                  <tbody>
-                    {demoAuditLog.map((entry, i) => (
-                      <tr key={entry.id} className={`border-b border-slate-50 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`}>
-                        <td className="px-4 py-3 font-mono text-[11px] text-slate-500">{entry.at}</td>
-                        <td className="px-4 py-3 font-medium text-slate-800">{entry.userName}</td>
-                        <td className="px-4 py-3 text-xs text-slate-600">{entry.action}</td>
-                        <td className="px-4 py-3"><span className="rounded bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">{entry.entityType}</span>&nbsp;<span className="font-mono text-[10px] text-[#FF5B00]">{entry.entityId}</span></td>
-                        <td className="px-4 py-3 font-mono text-[11px] text-slate-500">{entry.ip}</td>
-                        <td className="px-4 py-3">
-                          <span className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${entry.status === 'Success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : entry.status === 'Denied' ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-rose-200 bg-rose-50 text-rose-700'}`}>
-                            <span className={`h-1.5 w-1.5 rounded-full ${entry.status === 'Success' ? 'bg-emerald-400' : entry.status === 'Denied' ? 'bg-amber-400' : 'bg-rose-400'}`} />{entry.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {userTab === 'audit' && <AuditLogPanel />}
 
           {/* Sessions */}
           {userTab === 'sessions' && (
