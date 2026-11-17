@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -14,6 +14,7 @@ import {
   ChevronRight,
   CircleDollarSign,
   ClipboardList,
+  ClipboardCheck,
   FileBarChart2,
   FileInput,
   FileText,
@@ -103,6 +104,7 @@ const facilityGroups: NavGroup[] = [
       { name: 'Customers', href: '/customers', icon: Users2 },
       { name: 'Contracts & SLA', href: '/contracts', icon: Handshake },
       { name: 'Invoicing', href: '/finance/invoices', icon: Receipt },
+      { name: 'Approval Inbox', href: '/approvals', icon: ClipboardCheck },
     ],
   },
   {
@@ -137,6 +139,7 @@ const contractorGroups: NavGroup[] = [
       { name: 'Customers', href: '/customers', icon: Users2 },
       { name: 'Contracts & SLA', href: '/contracts', icon: Handshake },
       { name: 'Invoicing', href: '/finance/invoices', icon: Receipt },
+      { name: 'Approval Inbox', href: '/approvals', icon: ClipboardCheck },
     ],
   },
   {
@@ -386,4 +389,3 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
     </>
   );
 };
-

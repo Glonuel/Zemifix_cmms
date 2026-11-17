@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { createContext, useContext, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -50,6 +50,7 @@ const pageTitles: Record<string, string> = {
   '/sla/breaches': 'SLA breaches',
   '/finance': 'Finance',
   '/finance/invoices': 'Invoices',
+  '/approvals': 'Approval Inbox',
   '/reports': 'Reports',
   '/organization': 'Organization',
   '/workers': 'Workers',
@@ -226,4 +227,3 @@ export function AppShell({ children }: AppShellProps) {
     </AppShellContext.Provider>
   );
 }
-
