@@ -131,7 +131,10 @@ export async function POST(req: NextRequest) {
       challengeResult.plainCode
     );
 
-    if (!deliveryResult.ok) {
+    if ('detail' in deliveryResult) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('[AUTH OTP DELIVERY FAILURE]', deliveryResult.detail);
+      }
       return NextResponse.json(
         {
           error: 'Delivery Failed',
